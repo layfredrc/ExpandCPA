@@ -84,8 +84,17 @@ const AboutSection05 = ({ title, paragraph, btnText, standalone }) => {
     )
 }
 
-const AboutSection05Container = styled(AboutSection01Container)`
-    margin-top: 0rem;
+const Background = styled.div`
+    background: rgba(217, 224, 236, 0.3);
+    border-radius: 156px 70px 0px 0px;
+`
+
+const AboutSection05Container = styled.div`
+    background: linear-gradient(21.66deg, #4364f7 22.39%, #1b1464 95.86%);
+    color: white;
+
+    min-height: 55vh;
+    position: relative;
 `
 
 const JoinOurTeamContainer = styled.div`
@@ -102,7 +111,7 @@ const JoinOurTeamContainer = styled.div`
     height: 50vh;
 
     h1 {
-        font-family: 'AllRoundGothic-Demi';
+        font-family: 'Poppins', sans-serif;
         font-size: 36px;
         letter-spacing: 0.327px;
         text-align: left;
@@ -151,7 +160,7 @@ const JoinOurTeamContainer = styled.div`
 const JoinOurTeamContainer2 = styled(JoinOurTeamContainer)`
     h3 {
         font-size: 24px;
-        font-family: 'AllRoundGothic-Demi';
+        font-family: 'Poppins', sans-serif;
         letter-spacing: 0.327px;
         text-align: left;
 
@@ -164,7 +173,7 @@ const JoinOurTeamContainer2 = styled(JoinOurTeamContainer)`
     }
 
     h1 {
-        font-family: 'AllRoundGothic-Demi';
+        font-family: 'Poppins', sans-serif;
         font-size: 28px;
         letter-spacing: 0.327px;
         text-align: left;

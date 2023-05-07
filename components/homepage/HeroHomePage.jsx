@@ -31,26 +31,15 @@ const Hero = () => {
                         <h2>{t('sloganSubtitle')}</h2>
                     </Heading>
                     <RowButtonContainer>
-                        <Link href='/services'>
-                            <GradientButton
-                                width='200px'
-                                size='lg'
-                                gradientColor='#0657CF'
-                                type='button'
-                            >
-                                {t('ourServices')}
-                            </GradientButton>
-                        </Link>
-                        <Link href='/#contact'>
-                            <GradientButton
-                                width='200px'
-                                size='lg'
-                                type='button'
-                                gradientColor='linear-gradient(92.29deg, #4364F7 0.66%, #1B1464 96.93%);'
-                            >
-                                {t('contactUs')}
-                            </GradientButton>
-                        </Link>
+                        <RoundedButton
+                            type='button'
+                            href='/services'
+                        >
+                            {t('ourServices')}
+                        </RoundedButton>
+                        <UnderlinedButton href='/#contact'>
+                            {t('contactUs')}
+                        </UnderlinedButton>
                     </RowButtonContainer>
                 </motion.div>
                 <BlurCircleContainer>
@@ -124,6 +113,7 @@ const Hero = () => {
                             }}
                         />
                     </HeroImageContainer>
+                    <BlurCircleTopLeft />
                     <BlurCircleBottomLeft />
                 </BlurCircleContainer>
             </HeroWrapper>
@@ -132,29 +122,28 @@ const Hero = () => {
 }
 
 export const HeroContainer = styled.div`
-    padding: 2rem;
-    @media screen and (min-width: 768px) {
-        padding: 1rem 8%;
+    min-height: 894.25px;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-content: center;
+
+    // center the content
+    margin: 0 auto;
+
+    @media screen and (max-width: 1200px) {
+        padding: 2rem;
     }
-    @media screen and (min-width: 1024px) {
-        padding: 1rem 12%;
-    }
+
     @media screen and (min-width: 1200px) {
-        padding: 1rem 18%;
+        margin-top: -60px;
+        padding: 2rem;
     }
 
-    @media screen and (min-width: 1440px) {
-        padding: 1rem 22%;
-    }
-    @media screen and (min-width: 1800px) {
-        padding: 1rem 25%;
-    }
-
-    @media screen and (min-width: 2100px) {
-        padding: 1rem 16%;
-    }
-    @media screen and (min-width: 2500px) {
-        padding: 1rem 25%;
+    @media screen and (min-width: 1250px) {
+        padding: 0;
     }
 `
 
@@ -162,6 +151,8 @@ export const HeroWrapper = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
+    align-items: center;
+
     .text-content {
         display: flex;
         flex-flow: column;
@@ -184,30 +175,37 @@ export const HeroWrapper = styled.div`
     }
     @media screen and (min-width: 1440px) {
         flex-flow: row;
-        gap: 5rem;
+        gap: 3rem;
     }
 `
 
 export const Slogan = styled(motion.h1)`
-    font-family: 'AllRoundGothic-Demi';
-    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+
     color: #1b1464;
-    line-height: 1.2;
+    letter-spacing: 0.327px;
+    font-size: 25px;
+    line-height: 36px;
 
     @media screen and (max-width: 465px) {
-        font-size: 32px;
+        font-size: 25px;
+        line-height: 36px;
+        width: 300px;
     }
 
     @media screen and (min-width: 768px) {
-        font-size: 48px;
+        font-size: 40px;
+        line-height: 60px;
         width: 40rem;
     }
     @media screen and (min-width: 1024px) {
-        font-size: 40px;
         width: 30rem;
     }
-    @media screen and (min-width: 1440px) {
-        font-size: 56px;
+    @media screen and (min-width: 1200px) {
+        line-height: 64px;
+        font-size: 52px;
+
         width: 42rem;
     }
 `
@@ -218,33 +216,26 @@ export const HeadingContainer = styled(motion.div)`
 `
 
 export const Heading = styled.div`
-    margin-top: 3rem;
+    margin-top: 25px;
     display: flex;
+    flex-flow: column;
     justify-content: start;
+    font-size: 16px;
 
     h2 {
         font-style: normal;
         font-weight: 400;
-        font-size: 22px;
-        color: #1b1464;
-    }
+        font-size: 24px;
+        color: black;
+        line-height: 29px;
 
-    @media screen and (max-width: 465px) {
-        h2 {
-            font-size: 22px;
+        @media screen and (max-width: 465px) {
+            font-family: 'Gilroy';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
         }
-    }
-
-    @media screen and (min-width: 768px) {
-        h2 {
-            font-size: 22px;
-        }
-    }
-    @media screen and (min-width: 1024px) {
-        h2 {
-            font-size: 22px;
-        }
-        width: 32rem;
     }
 `
 
@@ -252,10 +243,6 @@ const RowButtonContainer = styled.div`
     margin-top: 3rem;
     display: flex;
     gap: 2rem;
-
-    @media screen and (max-width: 500px) {
-        flex-flow: column;
-    }
 `
 
 export const HeroImageContainer = styled(motion.div)`
@@ -268,6 +255,11 @@ export const HeroImageContainer = styled(motion.div)`
     grid-auto-columns: 1fr;
     grid-template-columns: 1fr 1fr;
     margin-top: 3rem;
+
+    @media screen and (max-width: 465px) {
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
 `
 
 const ImageWrapper1 = styled(motion.div)`
@@ -277,33 +269,28 @@ const ImageWrapper1 = styled(motion.div)`
     grid-row-end: 4;
     justify-self: end;
 
-    width: 16vw;
-    height: 28vw;
+    width: 200px;
+    height: 323.7px;
     border-radius: 25vw;
     background-image: url('https://assets.website-files.com/62e87007d1ea4833faeaf799/630fa7b82b57093487bddec2_img-header-01.jpg');
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
+    box-shadow: -15px 16px 33px 3px rgba(0, 0, 0, 0.12);
+
+    justify-self: start;
+
+    @media screen and (max-width: 500px) {
+        width: 150.54px;
+        height: 315.7px;
+    }
 
     @media screen and (max-width: 1023px) {
         justify-self: start;
-        width: 40vw;
-        height: 75vw;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1200px) {
         justify-self: center;
-        width: 25vw;
-        height: 40vw;
-    }
-
-    @media screen and (min-width: 1440px) {
-        width: 12vw;
-        height: 20vw;
-    }
-    @media screen and (min-width: 1800px) {
-        width: 10vw;
-        height: 16vw;
     }
 `
 
@@ -314,8 +301,8 @@ const ImageWrapper2 = styled(motion.div)`
     grid-row-end: 3;
     justify-self: center;
 
-    width: 16vw;
-    height: 16vw;
+    width: 200.38px;
+    height: 221.34px;
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
     border-bottom-right-radius: 100%;
@@ -324,25 +311,17 @@ const ImageWrapper2 = styled(motion.div)`
     background-size: cover;
     background-repeat: no-repeat;
 
+    @media screen and (max-width: 500px) {
+        width: 170.54px;
+        height: 190.7px;
+    }
+
     @media screen and (max-width: 1023px) {
         justify-self: start;
-        width: 40vw;
-        height: 40vw;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1200px) {
         justify-self: start;
-        width: 20vw;
-        height: 20vw;
-    }
-
-    @media screen and (min-width: 1440px) {
-        width: 12vw;
-        height: 12vw;
-    }
-    @media screen and (min-width: 1800px) {
-        width: 10vw;
-        height: 10vw;
     }
 `
 
@@ -353,8 +332,8 @@ const ImageWrapper3 = styled(motion.div)`
     grid-row-end: 4;
     justify-self: end;
 
-    width: 16vw;
-    height: 16vw;
+    width: 200px;
+    height: 231.35px;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
     border-bottom-left-radius: 100%;
@@ -363,23 +342,16 @@ const ImageWrapper3 = styled(motion.div)`
     background-size: cover;
     background-repeat: no-repeat;
 
+    @media screen and (max-width: 500px) {
+        width: 170.54px;
+        height: 190.7px;
+    }
+
     @media screen and (max-width: 1023px) {
         justify-self: start;
-        width: 40vw;
-        height: 40vw;
     }
     @media screen and (min-width: 1024px) and (max-width: 1200px) {
         justify-self: center;
-        width: 20vw;
-        height: 20vw;
-    }
-    @media screen and (min-width: 1440px) {
-        width: 12vw;
-        height: 12vw;
-    }
-    @media screen and (min-width: 1800px) {
-        width: 10vw;
-        height: 10vw;
     }
 `
 const ImageWrapper4 = styled(motion.div)`
@@ -389,33 +361,25 @@ const ImageWrapper4 = styled(motion.div)`
     grid-row-end: 7;
     justify-self: center;
 
-    width: 16vw;
-    height: 28vw;
+    width: 200px;
+    height: 322.06px;
     border-radius: 25vw;
     background-image: url('https://assets.website-files.com/62e87007d1ea4833faeaf799/630fab901bd7f91a91abac3b_img-header-04.jpg');
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
 
+    @media screen and (max-width: 500px) {
+        width: 150.54px;
+        height: 315.7px;
+    }
+
     @media screen and (max-width: 1023px) {
         justify-self: start;
-        width: 40vw;
-        height: 75vw;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1200px) {
         justify-self: start;
-        width: 20vw;
-        height: 40vw;
-    }
-
-    @media screen and (min-width: 1440px) {
-        width: 12vw;
-        height: 20vw;
-    }
-    @media screen and (min-width: 1800px) {
-        width: 10vw;
-        height: 16vw;
     }
 `
 
@@ -424,42 +388,61 @@ const BlurCircleContainer = styled.div`
 `
 
 const BlurCircleBottomLeft = styled.div`
-    width: 600px;
-    height: 800px;
     position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: -2rem;
-    background: rgba(118, 173, 255, 0.53);
-    filter: blur(100px);
-    z-index: 1;
-    transform: matrix(-0.21, -0.97, 0.99, -0.17, 0, 0);
+    width: 280.38px;
+    height: 280.38px;
+    right: -20px;
+    bottom: 0px;
+    background: rgba(6, 87, 207, 0.7);
+    filter: blur(195px);
 
-    @media screen and (min-width: 320px) {
-        width: 200px;
-        height: 300px;
-        left: 0;
-        right: none;
+    @media screen and (max-width: 1024px) {
+        width: 180.38px;
+        height: 180.38px;
     }
+`
 
-    @media screen and (min-width: 765px) {
-        width: 300px;
-        height: 500px;
-        left: 0;
-        right: none;
+const BlurCircleTopLeft = styled.div`
+    position: absolute;
+    width: 210.02px;
+    height: 210.02px;
+    left: 0px;
+    top: 100px;
+    background: #8a32fa;
+    filter: blur(182px);
+    @media screen and (max-width: 1024px) {
+        width: 180.38px;
+        height: 180.38px;
     }
+`
 
-    @media screen and (min-width: 1024px) {
-        width: 200px;
-        height: 500px;
-        left: 0;
-        right: none;
-        margin-left: 4rem;
-    }
+export const RoundedButton = styled(Link)`
+    background: #0657cf;
+    border-radius: 34px;
+    color: white;
+    padding: 10px 28px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
-    @media screen and (min-width: 1800px) {
-        width: 500px;
-        height: 550px;
+export const UnderlinedButton = styled(Link)`
+    color: #1b1464;
+    font-weight: 600;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #1b1464;
+        margin-top: 2px;
     }
 `
 

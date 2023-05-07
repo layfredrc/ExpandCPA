@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Tag } from '../homepage/HomeSection01'
+import { SloganSection01, Tag } from '../homepage/HomeSection01'
 import { RowWrapper, SloganSection06 } from '../homepage/HomeSection06'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -33,6 +33,14 @@ const useStyles = createStyles((theme) => ({
     wrapper: {
         position: 'relative',
         marginBottom: 30,
+        width: '300px',
+        '@media screen and (min-width: 600px)': {
+            width: '400px',
+        },
+
+        '@media screen and (min-width: 1600px)': {
+            transform: 'translateX(-30%)',
+        },
     },
 
     dropzone: {
@@ -50,7 +58,7 @@ const useStyles = createStyles((theme) => ({
         width: 250,
         left: 'calc(50% - 125px)',
         bottom: -20,
-        background: 'linear-gradient(92.29deg, #4364F7 0.66%, #1B1464 96.93%);',
+        background: '#0657CF',
     },
 }))
 
@@ -112,61 +120,83 @@ const HiringForm = () => {
             }}
             ref={ref}
         >
-            <Tag style={{ width: '40%' }}>
-                <span>{t('recrutement')}</span>
-            </Tag>
-
-            <RowWrapper>
-                <SloganSection06>{t('joinUs')}</SloganSection06>
-                <SocialMediaContainer>
-                    <a
-                        href='https://www.linkedin.com/company/asp-experts/'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        <Image
-                            src={linkedin}
-                            alt='linkedin'
-                        />
-                    </a>
-
-                    <Image
-                        src={instagram}
-                        alt='instagram'
-                    />
-                    <a
-                        href='https://api.whatsapp.com/send?phone=33768095356&text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20services%20et%20souhaiterais%20prendre%20contact%20avec%20un%20expert-comptable.'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        <Image
-                            src={whatsapp}
-                            alt='whatsapp'
-                        />
-                    </a>
-                    <Image
-                        src={youtube}
-                        alt='youtube'
-                    />
-                </SocialMediaContainer>
-            </RowWrapper>
             <Form
                 method='post'
                 onSubmit={handleOnSubmit}
             >
                 <FormLayout>
                     <TextContentContainer>
-                        <TextContent>
-                            <h1>{t('joinUsText')}</h1>
-                        </TextContent>
+                        <h1>{t('joinUsText')}</h1>
+
                         <FormColumn>
+                            <Group
+                                position='left'
+                                spacing='xl'
+                            >
+                                <TextInput
+                                    label={t('lastName')}
+                                    placeholder={t('lastName')}
+                                    tyoe='text'
+                                    radius='lg'
+                                    size='lg'
+                                    name='lastName'
+                                    styles={{
+                                        defaultVariant: {
+                                            borderColor: '#2457F5',
+                                            '&:focus': {
+                                                borderColor: '#2457F5',
+                                            },
+                                        },
+
+                                        label: {
+                                            marginBottom: 6,
+                                            fontFamily: 'Gilroy',
+                                            fontWeight: 500,
+                                            fontSize: '14px',
+                                            lineHeight: '20px',
+                                            /* identical to box height, or 143% */
+
+                                            /* Gray/700 */
+
+                                            color: '#344054',
+                                        },
+                                    }}
+                                />
+                                <TextInput
+                                    label={t('firstName')}
+                                    placeholder={t('firstName')}
+                                    type='text'
+                                    radius='lg'
+                                    size='lg'
+                                    name='firstName'
+                                    styles={{
+                                        defaultVariant: {
+                                            borderColor: '#2457F5',
+                                            '&:focus': {
+                                                borderColor: '#2457F5',
+                                            },
+                                        },
+                                        label: {
+                                            marginBottom: 6,
+                                            fontFamily: 'Gilroy',
+                                            fontWeight: 500,
+                                            fontSize: '14px',
+                                            lineHeight: '20px',
+                                            /* identical to box height, or 143% */
+
+                                            /* Gray/700 */
+
+                                            color: '#344054',
+                                        },
+                                    }}
+                                />
+                            </Group>
+
                             <TextInput
-                                required
                                 label='Email'
-                                placeholder='your@email.com'
+                                placeholder='jean.dupont@votre-entreprise.com'
                                 type='email'
                                 radius='lg'
-                                icon={<IconMail color='#2457F5' />}
                                 size='lg'
                                 name='email'
                                 styles={{
@@ -176,62 +206,29 @@ const HiringForm = () => {
                                             borderColor: '#2457F5',
                                         },
                                     },
+
+                                    label: {
+                                        marginBottom: 6,
+                                        fontFamily: 'Gilroy',
+                                        fontWeight: 500,
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        /* identical to box height, or 143% */
+
+                                        /* Gray/700 */
+
+                                        color: '#344054',
+                                    },
                                 }}
                                 // {...form.getInputProps("email")}
                             />
 
-                            <Group
-                                position='left'
-                                spacing='xl'
-                            >
-                                <TextInput
-                                    required
-                                    label={t('firstName')}
-                                    placeholder={t('firstName')}
-                                    type='text'
-                                    radius='lg'
-                                    size='lg'
-                                    name='firstName'
-                                    // {...form.getInputProps("firstName")}
-                                    icon={<IconUser color='#2457F5' />}
-                                    styles={{
-                                        defaultVariant: {
-                                            borderColor: '#2457F5',
-                                            '&:focus': {
-                                                borderColor: '#2457F5',
-                                            },
-                                        },
-                                    }}
-                                />
-                                <TextInput
-                                    required
-                                    label={t('lastName')}
-                                    placeholder={t('lastName')}
-                                    tyoe='text'
-                                    radius='lg'
-                                    size='lg'
-                                    icon={<IconUser color='#2457F5' />}
-                                    name='lastName'
-                                    // {...form.getInputProps("lastName")}
-                                    styles={{
-                                        defaultVariant: {
-                                            borderColor: '#2457F5',
-                                            '&:focus': {
-                                                borderColor: '#2457F5',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Group>
-
                             <TextInput
-                                required
                                 label={t('phone')}
                                 placeholder='01 23 45 67 89'
                                 type='tel'
                                 radius='lg'
                                 size='lg'
-                                icon={<IconPhone color='#2457F5' />}
                                 name='phone'
                                 // {...form.getInputProps("phone")}
                                 styles={{
@@ -241,15 +238,46 @@ const HiringForm = () => {
                                             borderColor: '#2457F5',
                                         },
                                     },
+                                    label: {
+                                        marginBottom: 6,
+                                        fontFamily: 'Gilroy',
+                                        fontWeight: 500,
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        /* identical to box height, or 143% */
+
+                                        /* Gray/700 */
+
+                                        color: '#344054',
+                                    },
                                 }}
                             />
                             <Textarea
                                 placeholder={t('your_message')}
-                                label={t('your_message')}
+                                label={t('Message')}
                                 name='message'
-                                withAsterisk
                                 size='xl'
                                 radius='lg'
+                                styles={{
+                                    defaultVariant: {
+                                        borderColor: '#2457F5',
+                                        '&:focus': {
+                                            borderColor: '#2457F5',
+                                        },
+                                    },
+                                    label: {
+                                        marginBottom: 6,
+                                        fontFamily: 'Gilroy',
+                                        fontWeight: 500,
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        /* identical to box height, or 143% */
+
+                                        /* Gray/700 */
+
+                                        color: '#344054',
+                                    },
+                                }}
                             />
                             <Modal
                                 opened={opened}
@@ -289,7 +317,7 @@ const HiringForm = () => {
                             </Modal>
                         </FormColumn>
                     </TextContentContainer>
-                    <FormColumn>
+                    <InputFileColumn>
                         <div className={classes.wrapper}>
                             <Dropzone
                                 openRef={openRef}
@@ -362,10 +390,7 @@ const HiringForm = () => {
                                             mt='xs'
                                             color='dimmed'
                                         >
-                                            Drag & apos;n&apos;drop files here
-                                            to upload. We can accept only{' '}
-                                            <i>.pdf</i> files that are less than
-                                            30mb in size.
+                                            Drag n Drop your file here
                                         </Text>
                                     )}
                                 </div>
@@ -380,16 +405,18 @@ const HiringForm = () => {
                                 Select files
                             </Button>
                         </div>
-                    </FormColumn>
+                    </InputFileColumn>
                 </FormLayout>
                 <GradientButton
                     type='submit'
-                    size='lg'
+                    size='md'
                     width='300px'
-                    gradientColor='linear-gradient(92.29deg, #4364F7 0.66%, #1B1464 96.93%);'
+                    weight='400'
+                    radius='xl'
+                    gradientColor='#0657CF'
                     onClick={() => setOpened(true)}
                 >
-                    {t('send')}
+                    {t('contactFormBtnLabel')}
                 </GradientButton>
             </Form>
         </ContactFormContainer>
@@ -399,28 +426,34 @@ const HiringForm = () => {
 export default HiringForm
 
 const ContactFormContainer = styled(motion.div)`
-    padding: 2rem;
+    background: linear-gradient(
+        360deg,
+        rgba(217, 224, 236, 0.25) 0%,
+        rgba(217, 224, 236, 0) 119.76%
+    );
+
+    min-height: 100vh;
 
     @media screen and (min-width: 768px) {
-        padding: 2rem 8%;
+        padding: 5rem;
     }
     @media screen and (min-width: 1024px) {
-        padding: 2rem 10%;
+        padding: 5rem 10%;
         flex-flow: row;
     }
 
     @media screen and (min-width: 1440px) {
-        padding: 2rem 14%;
+        padding: 5rem 14%;
     }
     @media screen and (min-width: 1800px) {
-        padding: 2rem 18%;
+        padding: 5rem 18%;
     }
 
     @media screen and (min-width: 2100px) {
-        padding: 2rem 22%;
+        padding: 5rem 22%;
     }
     @media screen and (min-width: 2500px) {
-        padding: 2rem 25%;
+        padding: 5rem 25%;
     }
 `
 
@@ -429,14 +462,7 @@ const Form = styled.form`
     flex-flow: column;
     gap: 2rem;
     padding: 2rem;
-    border: 3px solid #1b1464;
-    border-radius: 51px;
     margin-top: 2rem;
-
-    @media screen and (min-width: 1200px) {
-        gap: 3rem;
-        padding: 5rem;
-    }
 `
 
 const FormLayout = styled.div`
@@ -444,21 +470,13 @@ const FormLayout = styled.div`
     justify-content: space-between;
     flex-flow: column;
     gap: 2rem;
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1200px) and (max-width: 1250px) {
         flex-flow: row;
-        justify-content: stretch;
-        gap: 3rem;
+        justify-content: space-around;
     }
-`
 
-const SocialMediaContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-
-    @media screen and (min-width: 1024px) {
-        margin-top: 2rem;
+    @media screen and (min-width: 1250px) {
+        flex-flow: row;
     }
 `
 
@@ -467,6 +485,24 @@ const TextContentContainer = styled.div`
     justify-content: center;
     flex-flow: column;
     color: #1b1464;
+
+    h1 {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+        /* or 122% */
+
+        letter-spacing: -0.02em;
+
+        color: #1b1464;
+
+        @media screen and (min-width: 768px) {
+            width: 448px;
+            height: 88px;
+        }
+    }
 `
 
 const TextContent = styled.div`
@@ -483,12 +519,10 @@ const TextContent = styled.div`
         margin-bottom: 0rem;
     }
     h1 {
-        font-family: 'AllRoundGothic-Demi';
+        font-family: 'Poppins', sans-serif;
         @media screen and (max-width: 1024px) {
-            font-size: 42px;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            margin-top: 2rem;
+            font-size: 25px;
+            line-height: 38px;
             text-align: center;
         }
 
@@ -533,6 +567,15 @@ const FormColumn = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+`
+
+const InputFileColumn = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
     margin-top: 2rem;
 `

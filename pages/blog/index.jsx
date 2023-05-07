@@ -10,6 +10,11 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 import { pageAnimation } from '../../lib/animation'
+import ContactForm from '../../components/homepage/ContactForm'
+import SocialBanner from '../../components/banner/SocialBanner'
+import BlogBanner from '../../components/banner/BlogBanner'
+import BlogSection from '../../components/homepage/BlogSection'
+import BlogContent from '../../components/blog/BlogContent'
 
 const getStaticProps = async ({ locale }) => {
     const database = await getDatabase(databaseId)
@@ -32,20 +37,33 @@ export default function Blog({ posts }) {
         bindI18n: 'languageChanged loaded',
     })
 
+    console.log('posts', posts)
+
     const router = useRouter()
     useEffect(() => {
         i18n.reloadResources(i18n.resolvedLanguage, ['common'])
     }, [router.locale])
 
-    const categoryBusinessPosts = posts.filter(
+    const auditPosts = posts.filter(
         (post) =>
-            post?.properties?.Tags?.select?.name === 'Comptabilité & Fiscalité'
+            post?.properties?.Tags?.select?.name ===
+            'Audit & Commissariat aux comptes'
     )
-    const categoryLegalPosts = posts.filter(
-        (post) => post?.properties?.Tags?.select?.name === 'Juridique'
+    const paieRHPosts = posts.filter(
+        (post) => post?.properties?.Tags?.select?.name === 'Paie & RH'
     )
-    const categoryTaxPosts = posts.filter(
-        (post) => post?.properties?.Tags?.select?.name === 'CAT'
+    const organisationPosts = posts.filter(
+        (post) => post?.properties?.Tags?.select?.name === 'Organisation'
+    )
+    const fiscalitePosts = posts.filter(
+        (post) =>
+            post?.properties?.Tags?.select?.name ===
+            'Fiscalité des particuliers'
+    )
+    const comptabilitePosts = posts.filter(
+        (post) =>
+            post?.properties?.Tags?.select?.name ===
+            'Fiscalité des particuliers'
     )
 
     return (
@@ -107,13 +125,17 @@ export default function Blog({ posts }) {
                 exit='exit'
             >
                 <HeaderMegaMenu />
-                <HeroBlogPage posts={posts} />
-                <CategoryBlog
+                <BlogBanner />
+                <BlogContent
                     posts={posts}
-                    categoryBusinessPosts={categoryBusinessPosts}
-                    categoryLegalPosts={categoryLegalPosts}
-                    categoryTaxPosts={categoryTaxPosts}
+                    auditPosts={auditPosts}
+                    paieRHPosts={paieRHPosts}
+                    organisationPosts={organisationPosts}
+                    fiscalitePosts={fiscalitePosts}
+                    comptabilitePosts={comptabilitePosts}
                 />
+                <ContactForm />
+                <SocialBanner />
                 <Footer />
             </motion.div>
         </>

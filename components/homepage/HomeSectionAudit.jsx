@@ -1,11 +1,6 @@
 import styled from 'styled-components'
-import {
-    HomeSection01Container,
-    HomeSection01Wrapper,
-    SloganSection01,
-    Tag,
-    HeadingSection01,
-} from './HomeSection01'
+import Image from 'next/image'
+import { HomeSection01Container, SloganSection01, Tag } from './HomeSection01'
 
 import { motion, useInView } from 'framer-motion'
 import { titleAnim } from '../../lib/animation'
@@ -13,8 +8,11 @@ import { useTranslation } from 'next-i18next'
 import GradientButton from '../button/GradientButton'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { HomeSectionJuridiqueWrapper } from './HomeSectionJuridique'
 import { HeadingSection02 } from './HomeSection02'
+import audit from '../../images/audit_hero_img.png'
+import { HomeSection03Wrapper } from './HomeSection03'
+import { ImageWrapperGradient } from './HomeSectionFiscal'
+import { RoundedButton } from './HeroHomePage'
 
 const HomeSectionAudit = () => {
     const { t, i18n } = useTranslation('common', {
@@ -42,8 +40,14 @@ const HomeSectionAudit = () => {
             }}
             ref={ref}
         >
-            <HomeSectionJuridiqueWrapper>
-                <ImageWrapperAudit />
+            <HomeSection03Wrapper>
+                <ImageWrapperGradient>
+                    <Image
+                        src={audit}
+                        fill
+                        alt='Audit'
+                    />
+                </ImageWrapperGradient>
                 <motion.div
                     className='text-content'
                     variants={titleAnim}
@@ -70,74 +74,16 @@ const HomeSectionAudit = () => {
                         <h2>{t('sectionAudit_text4')}</h2>
                     </HeadingSection02>
                     <HeadingSection02>
-                        <Link href='/services/audit-services'>
-                            <GradientButton
-                                gradientColor='#0657CF'
-                                type='button'
-                                width={200}
-                            >
+                        <div style={{ width: '157px' }}>
+                            <RoundedButton href='/services/audit-services'>
                                 {t('readMore')}
-                            </GradientButton>
-                        </Link>
+                            </RoundedButton>
+                        </div>
                     </HeadingSection02>
                 </motion.div>
-            </HomeSectionJuridiqueWrapper>
+            </HomeSection03Wrapper>
         </HomeSection01Container>
     )
 }
-
-const ImageWrapperAudit = styled.div`
-    border-top-left-radius: 8vw;
-    border-bottom-left-radius: 8vw;
-    border-top-right-radius: 8vw;
-    border-bottom-right-radius: 8vw;
-    background-image: url('https://images.pexels.com/photos/3184635/pexels-photo-3184635.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-    background-position: 50% 0%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-top: 3rem;
-    width: 100%;
-    height: 50vh;
-    align-self: center;
-    @media screen and (max-width: 479px) {
-        margin-top: 3rem;
-        width: 100%;
-        height: 50vh;
-    }
-
-    @media screen and (min-width: 767px) {
-        margin-top: 3rem;
-        height: 60vh;
-        width: 100%;
-    }
-
-    @media screen and (min-width: 991px) {
-        height: 60vh;
-        width: 100%;
-        background-position: 50% 40%;
-    }
-
-    @media screen and (min-width: 1200px) {
-        transform: translateX(-20%);
-    }
-
-    @media screen and (min-width: 1440px) {
-        height: 60vh;
-        width: 100%;
-        background-position: 50% 50%;
-        margin-right: 5rem;
-        transform: translateX(0%);
-    }
-    @media screen and (min-width: 2100px) {
-        height: 50vh;
-        width: 25vw;
-        border-top-left-radius: 6vw;
-        border-bottom-left-radius: 6vw;
-        border-top-right-radius: 6vw;
-        border-bottom-right-radius: 6vw;
-        background-position: 50% 40%;
-        margin-right: 5rem;
-    }
-`
 
 export default HomeSectionAudit

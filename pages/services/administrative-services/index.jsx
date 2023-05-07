@@ -1,30 +1,23 @@
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
-import { HeroContainer } from '../../../components/homepage/HeroHomePage'
 import HeaderMegaMenu from '../../../components/header/HeaderMegaMenu'
 import Footer from '../../../components/footer/Footer'
-import Image from 'next/image'
 
 import styled from 'styled-components'
-import check from '../../../images/check.svg'
-
-import feat1 from '../../../images/administrativeServices/feat1.svg'
-import feat2 from '../../../images/administrativeServices/feat2.svg'
-import feat3 from '../../../images/administrativeServices/feat3.svg'
-import feat4 from '../../../images/administrativeServices/feat4.svg'
-import feat5 from '../../../images/administrativeServices/feat5.svg'
-import feat6 from '../../../images/administrativeServices/feat6.svg'
-import feat7 from '../../../images/administrativeServices/feat7.svg'
 
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { pageAnimation } from '../../../lib/animation'
 import Head from 'next/head'
 import InfiniteSlider from '../../../components/slider/InfiniteSlider'
-import AboutSection05 from '../../../components/about/AboutSection05'
-import logoArrow from '../../../images/logo_arrow.png'
 
+import DetailServiceBanner from '../../../components/banner/DetailServiceBanner'
+import adminServicesDetailBanner from '../../../images/admin_detail_banner.png'
+import SocialBanner from '../../../components/banner/SocialBanner'
+import JoinOurTeamBanner from '../../../components/banner/JoinOurTeamBanner'
+import KeyServicesBanner from '../../../components/banner/KeyServicesBanner'
+import admin from '../../../images/papier.svg'
 const AdministritiveServices = ({}) => {
     const { t, i18n } = useTranslation(['administrativeServices'], {
         bindI18n: 'languageChanged loaded',
@@ -103,434 +96,223 @@ const AdministritiveServices = ({}) => {
                 exit='exit'
             >
                 <HeaderMegaMenu />
-                <HeroContainer style={{ marginTop: '10rem' }}>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section1_title')}</Slogan>
-                            <Heading>
-                                {t('section1_text1')}
+                <DetailServiceBanner
+                    title={t('section1_title')}
+                    coverImage={adminServicesDetailBanner}
+                    coverImageMobile='/adminServices.png'
+                    textContent={
+                        <>
+                            <h3>{t('section1_text1')}</h3>
+                            <h3>
                                 <b>{t('section1_bold1')}</b>
-                                {t('section1_text2')}
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
+                            </h3>
+                            <h3>{t('section1_text2')}</h3>
+                        </>
+                    }
+                    color='#8306cf'
+                />
 
-                    <Heading>
-                        <Subtitle>{t('features_title')}</Subtitle>
-                    </Heading>
+                <KeyServicesBanner
+                    icon={admin}
+                    textContent={
+                        <>
+                            <Heading>{t('feature1')}</Heading>
+                            <Heading>{t('feature2')}</Heading>
+                            <Heading>{t('feature3')}</Heading>
+                            <Heading>{t('feature4')}</Heading>
+                            <Heading>{t('feature5')}</Heading>
+                            <Heading>{t('feature6')}</Heading>
+                            <Heading>{t('feature7')}</Heading>
+                        </>
+                    }
+                />
 
-                    <Heading>
-                        <FeaturesContainer>
-                            <Feature>
-                                <Image
-                                    src={feat1}
-                                    alt='feat1'
-                                />
-                                <p>{t('feature1')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat2}
-                                    alt='feat2'
-                                />
-                                <p>{t('feature2')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat3}
-                                    alt='feat3'
-                                />
-                                <p>{t('feature3')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat4}
-                                    alt='feat4'
-                                />
-                                <p>{t('feature4')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat5}
-                                    alt='feat5'
-                                />
-                                <p>{t('feature5')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat6}
-                                    alt='feat6'
-                                />
-                                <p>{t('feature6')}</p>
-                            </Feature>
-                            <Feature>
-                                <Image
-                                    src={feat7}
-                                    alt='feat7'
-                                />
-                                <p>{t('feature7')}</p>
-                            </Feature>
-                        </FeaturesContainer>
-                    </Heading>
+                <InfiniteSlider />
 
-                    <InfiniteSlider />
+                <JoinOurTeamBanner />
 
-                    <AboutSection05
-                        title={t('CTA')}
-                        btnText={t('contactUs')}
-                        standalone
-                    />
-                </HeroContainer>
+                <TextContentContainer>
+                    <TextContent>
+                        <Slogan>{t('section2_title')}</Slogan>
+                        <Paragraph>
+                            <b>{t('section2_bold1')}</b>
+                        </Paragraph>
+                        <Paragraph>{t('section2_text1')}</Paragraph>
+                    </TextContent>
+                </TextContentContainer>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section2_title')}</Slogan>
-                            <Heading>
-                                <b>{t('section2_bold1')}</b>
-                            </Heading>
-                            <Heading>{t('section2_text1')}</Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                <TextContentContainer gray>
+                    <TextContent>
+                        <Slogan>{t('section3_title')}</Slogan>
+                        <Paragraph>{t('section3_text1')}</Paragraph>
+                        <Paragraph>
+                            <b>{t('section3_bold1')}</b>
+                        </Paragraph>
+                        <Paragraph>{t('section3_text2')}</Paragraph>
+                    </TextContent>
+                </TextContentContainer>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section3_title')}</Slogan>
-                            <Heading>{t('section3_text1')}</Heading>
-                            <Heading>
-                                <b>{t('section3_bold1')}</b>
-                            </Heading>
-                            <Heading>{t('section3_text2')}</Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                <TextContentContainer>
+                    <TextContent>
+                        <Slogan>{t('section4_title')}</Slogan>
+                        <Paragraph>
+                            <b>{t('section4_text1')}</b>
+                        </Paragraph>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section4_title')}</Slogan>
-                            <Heading>
-                                <Heading>{t('section4_text1')}</Heading>
+                        <BulletList>
+                            <li>
+                                {t('section4_bullet1')}
+                                <b>{t('section4_bold1')}</b>
+                                {t('section4_bullet1_2')}
+                            </li>
+                            <li>
+                                {t('section4_bullet2')}
+                                <b>{t('section4_bold2')}</b>
+                                {t('section4_bullet2_2')}
+                            </li>
+                            <li>
+                                {t('section4_bullet3')}
+                                <b>{t('section4_bold3')}</b>
+                                {t('section4_bullet3_2')}
+                            </li>
+                            <li>
+                                {t('section4_bullet4')}
+                                <b>{t('section4_bold4')}</b>
+                                {t('section4_bullet4_2')}
+                                <b>{t('section4_bold4_2')}</b>
+                                {t('section4_bullet4_3')}
+                            </li>
+                            <li>
+                                {t('section4_bullet5')}
+                                <b>{t('section4_bold5')}</b>
+                                {t('section4_bullet5_2')}
+                            </li>
+                            <li>
+                                {t('section4_bullet6')}
+                                <b>{t('section4_bold6')}</b>
+                                {t('section4_bullet6_2')}
+                            </li>
+                        </BulletList>
+                    </TextContent>
+                </TextContentContainer>
+                <Divider />
 
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet1')}
-                                        <b>{t('section4_bold1')}</b>
-                                        {t('section4_bullet1_2')}
-                                    </Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet2')}
-                                        <b>{t('section4_bold2')}</b>
-                                        {t('section4_bullet2_2')}
-                                    </Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet3')}
-                                        <b>{t('section4_bold3')}</b>
-                                        {t('section4_bullet3_2')}
-                                    </Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet4')}
-                                        <b>{t('section4_bold4')}</b>
-                                        {t('section4_bullet4_2')}
-                                        <b>{t('section4_bold4_2')}</b>
-                                        {t('section4_bullet4_3')}
-                                    </Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet5')}
-                                        <b>{t('section4_bold5')}</b>
-                                        {t('section4_bullet5_2')}
-                                    </Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>
-                                        {t('section4_bullet6')}
-                                        <b>{t('section4_bold6')}</b>
-                                        {t('section4_bullet6_2')}
-                                    </Heading>
-                                </RowWrapper>
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                <TextContentContainer>
+                    <TextContent>
+                        <Slogan>{t('section5_title')}</Slogan>
+                        <Paragraph>
+                            <b>{t('section5_bold1')}</b>
+                        </Paragraph>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section5_title')}</Slogan>
+                        <Paragraph>{t('section5_text1')}</Paragraph>
+                    </TextContent>
+                </TextContentContainer>
 
-                            <Heading>
-                                <b>{t('section5_bold1')}</b>
-                                {t('section5_text1')}
-                            </Heading>
+                <TextContentContainer gray>
+                    <TextContent>
+                        <Slogan>{t('section6_title')}</Slogan>
 
-                            <Subtitle>{t('section6_title')}</Subtitle>
+                        <Paragraph>
+                            {t('section6_text1')}
+                            <b>{t('section6_bold1')}</b>
+                            {t('section6_text2')}
+                        </Paragraph>
 
-                            <Heading>
-                                {t('section6_text1')}
-                                <b>{t('section6_bold1')}</b>
-                                {t('section6_text2')}
-                            </Heading>
+                        <BulletList>
+                            <li>{t('section6_bullet1')}</li>
 
-                            <Heading>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section6_bullet1')}</Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section6_bullet2')}</Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section6_bullet3')}</Heading>
-                                </RowWrapper>
+                            <li>{t('section6_bullet2')}</li>
 
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section6_bullet6')}</Heading>
-                                </RowWrapper>
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                            <li>{t('section6_bullet3')}</li>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section7_title')}</Slogan>
+                            <li>{t('section6_bullet6')}</li>
+                            <li>{t('section6_bullet7')}</li>
+                            <li>{t('section6_bullet8')}</li>
+                            <li>{t('section6_bullet9')}</li>
+                        </BulletList>
+                    </TextContent>
+                </TextContentContainer>
 
-                            <Heading>
+                <TextContentContainer>
+                    <SectionImage>
+                        <BackgroundColor color='#1B1464'>
+                            <ImageWrapper src={'/adminServices.png'} />
+                        </BackgroundColor>
+                        <div className='text-content'>
+                            <h1>{t('section7_title')}</h1>
+
+                            <p>
                                 {t('section7_text1')}
                                 <b>{t('section7_bold1')}</b>
                                 {t('section7_text2')}
-                            </Heading>
+                            </p>
+                        </div>
+                    </SectionImage>
+                </TextContentContainer>
+                <Divider />
 
-                            <Subtitle>{t('section7_subtitle1')}</Subtitle>
+                <TextContentContainer>
+                    <TextContent>
+                        <Slogan>{t('section7_subtitle1')}</Slogan>
 
-                            <Heading>
-                                <b>{t('section7_bold2')}</b>
-                                {t('section7_text3')}
-                            </Heading>
-                            <Heading>
-                                {t('section7_text4')}
-                                <b>{t('section7_bold3')}</b>
-                            </Heading>
+                        <Paragraph>
+                            <b>{t('section7_bold2')}</b>
+                            {t('section7_text3')}
+                        </Paragraph>
+                        <Paragraph>
+                            {t('section7_text4')}
+                            <b>{t('section7_bold3')}</b>
+                        </Paragraph>
 
-                            <Heading>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section7_bullet1')}</Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section7_bullet2')}</Heading>
-                                </RowWrapper>
-                                <RowWrapper className=''>
-                                    <Image
-                                        src={logoArrow}
-                                        alt='check1'
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <Heading>{t('section7_bullet3')}</Heading>
-                                </RowWrapper>
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                        <BulletList>
+                            <li>{t('section7_bullet1')}</li>
+                            <li>{t('section7_bullet2')}</li>
+                            <li>{t('section7_bullet3')}</li>
+                        </BulletList>
+                    </TextContent>
+                </TextContentContainer>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section8_title')}</Slogan>
-                            <Heading>
-                                <Heading>
-                                    {t('section8_text1')}
-                                    <b>{t('section2_bold1')}</b>
-                                    {t('section8_text2')}
-                                </Heading>
-                                <Heading>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet1')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet2')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet3')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet4')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet5')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet6')}
-                                        </Heading>
-                                    </RowWrapper>
-                                    <RowWrapper className=''>
-                                        <Image
-                                            src={logoArrow}
-                                            alt='check1'
-                                            width={50}
-                                            height={50}
-                                        />
-                                        <Heading>
-                                            {t('section8_bullet7')}
-                                        </Heading>
-                                    </RowWrapper>
-                                </Heading>
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                <TextContentContainer gray>
+                    <TextContent>
+                        <Slogan>{t('section8_title')}</Slogan>
+                        <Paragraph>
+                            {t('section8_text1')}
+                            <b>{t('section2_bold1')}</b>
+                            {t('section8_text2')}
+                        </Paragraph>
+                        <BulletList>
+                            <li>{t('section8_bullet1')}</li>
+                            <li>{t('section8_bullet2')}</li>
+                            <li>{t('section8_bullet3')}</li>
+                            <li>{t('section8_bullet4')}</li>
+                            <li>{t('section8_bullet5')}</li>
+                            <li>{t('section8_bullet6')}</li>
+                            <li>{t('section8_bullet7')}</li>
+                        </BulletList>
+                    </TextContent>
+                </TextContentContainer>
 
-                <HeroContainer>
-                    <LayoutColumn>
-                        <TextContent>
-                            <Slogan>{t('section9_title')}</Slogan>
-                            <Heading>
-                                <Heading>
-                                    <b>{t('section9_bold1')}</b>
-                                    {t('section9_text1')}
-                                </Heading>
-                                <Heading>
-                                    {t('section9_text2')}
-                                    <b>{t('section9_bold2')}</b>
-                                </Heading>
-                                <Heading>
-                                    {t('section9_text3')}
-                                    <b>{t('section9_bold3')}</b>
-                                    {t('section9_text4')}
-                                </Heading>
-                            </Heading>
-                        </TextContent>
-                    </LayoutColumn>
-                </HeroContainer>
+                <TextContentContainer>
+                    <TextContent>
+                        <Slogan>{t('section9_title')}</Slogan>
+                        <Paragraph>
+                            <b>{t('section9_bold1')}</b>
+                            {t('section9_text1')}
+                        </Paragraph>
+                        <Paragraph>
+                            {t('section9_text2')}
+                            <b>{t('section9_bold2')}</b>
+                        </Paragraph>
+                        <Paragraph>
+                            {t('section9_text3')}
+                            <b>{t('section9_bold3')}</b>
+                            {t('section9_text4')}
+                        </Paragraph>
+                    </TextContent>
+                </TextContentContainer>
+                <Divider />
+
+                <SocialBanner />
                 <Footer />
             </motion.div>
         </>
@@ -552,41 +334,36 @@ export { getStaticProps }
 
 export default AdministritiveServices
 
-export const Layout = styled.div`
-    display: flex;
-    flex-flow: column;
-    background: transparent;
-    gap: 3rem;
-    align-items: center;
-    @media screen and (max-width: 465px) {
-        flex-flow: column;
-    }
-
-    @media screen and (min-width: 768px) {
-        font-size: 48px;
-        flex-flow: column;
-    }
-    @media screen and (min-width: 1024px) {
-        font-size: 50px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-    @media screen and (min-width: 1440px) {
-        font-size: 52px;
-    }
-`
-
-export const LayoutReversed = styled(Layout)`
-    flex-flow: column-reverse;
-`
-
-export const LayoutColumn = styled.div`
-    position: relative;
+export const TextContentContainer = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     align-content: center;
+    margin-top: 85px;
+    margin-bottom: 85px;
+    padding: ${(props) => (props.gray ? '85px' : '0px 0px 0px 0px')};
+    background: ${(props) => (props.gray ? 'rgba(217, 224, 236, 0.15)' : '')};
+    border-radius: ${(props) => (props.gray ? '0px 0px 0px 143px' : '')};
+
+    @media screen and (max-width: 1200px) {
+        padding: ${(props) => (props.gray ? '8rem 1.5rem' : '0 1.5rem')};
+    }
+`
+
+export const Divider = styled.div`
+    height: 1px;
+    border: 2px solid #f0f3f7;
+    margin-top: 85px;
+    max-width: 1200px;
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (max-width: 1200px) {
+        width: 90%;
+    }
 `
 
 export const TextContent = styled.div`
@@ -595,32 +372,48 @@ export const TextContent = styled.div`
     justify-content: start;
     align-items: start;
     align-content: start;
-    gap: 1rem;
+    gap: 18.84px;
+    max-width: 1200px;
 `
 
 export const Slogan = styled(motion.h1)`
-    font-family: 'AllRoundGothic-Demi';
-    font-size: 32px;
-    color: #352d61;
-    line-height: 1.2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    /* or 140% */
 
-    @media screen and (max-width: 465px) {
-        font-size: 28px;
-    }
+    letter-spacing: 0.327px;
+
+    color: #1b1464;
+
+    width: 70%;
 
     @media screen and (min-width: 768px) {
-        font-size: 32px;
+        font-size: 25px;
+        line-height: 38px;
     }
     @media screen and (min-width: 1024px) {
-        font-size: 36px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* or 140% */
+
+        letter-spacing: 0.327px;
     }
-    @media screen and (min-width: 1440px) {
-        font-size: 46px;
+
+    @media screen and (max-width: 767px) {
+        font-size: 25px;
+        line-height: 38px;
+        width: 100%;
     }
 `
 
 export const Subtitle = styled.h1`
-    font-family: 'AllRoundGothic-Demi';
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     line-height: 1.2;
     color: #352d61;
@@ -645,41 +438,113 @@ export const Subtitle = styled.h1`
 `
 
 export const Heading = styled.div`
-    font-size: 18px;
-    line-height: 30px;
-    color: #352d61;
-    margin: 1rem 0;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.08em;
 
-    @media screen and (max-width: 465px) {
-    }
+    color: #1b1464;
+`
 
-    @media screen and (min-width: 768px) {
-        br {
-            display: none;
-        }
+export const Paragraph = styled.p`
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24.66px;
+    /* or 25px */
+
+    color: #1b1464;
+
+    width: 72%;
+
+    @media screen and (max-width: 1200px) {
+        width: 100%;
     }
-    @media screen and (min-width: 1024px) {
-        br {
-            display: block;
-        }
-        font-size: 22px;
-    }
-    @media screen and (min-width: 1440px) {
-        font-size: 22px;
+`
+
+export const BulletList = styled.div`
+    display: flex;
+    flex-flow: column;
+    gap: 2px;
+
+    li {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24.66px;
+        /* or 25px */
+
+        color: #1b1464;
+
+        margin-left: 10px;
     }
 `
 
 export const ImageWrapper = styled.div`
-    position: relative;
-    width: 400px;
-    height: 500px;
-    object-fit: cover;
+    background-image: ${(props) => `url(${props.src})`};
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 3rem;
+    width: 482.79px;
+    height: 341px;
+    border-radius: 188.375px 0px 188.375px 0px;
 
-    justify-self: center;
+    @media screen and (min-width: 1200px) {
+        transform: translate(-2.5%, -16%);
+    }
+
+    @media screen and (min-width: 1440px) {
+        width: 493.79px;
+        height: 348.43px;
+        background-position: 50% 50%;
+    }
+    @media screen and (min-width: 2100px) {
+        width: 493.79px;
+        height: 348.43px;
+        background-position: 50% 40%;
+    }
+
+    @media screen and (max-width: 1200px) {
+        width: 400px;
+        height: 300px;
+        transform: translate(-2.5%, -18%);
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 400px;
+        height: 300px;
+    }
 
     @media screen and (max-width: 500px) {
-        width: 300px;
-        height: 400px;
+        width: 350px;
+        height: 250px;
+        transform: translate(-2.5%, -22%);
+    }
+`
+
+export const BackgroundColor = styled.div`
+    width: 493.79px;
+    height: 348.43px;
+    background: ${(props) => props.color};
+    border-radius: 188.375px 0px 188.375px 0px;
+
+    @media screen and (max-width: 1200px) {
+        width: 400px;
+        height: 300px;
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 400px;
+        height: 300px;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 350px;
+        height: 250px;
     }
 `
 
@@ -727,10 +592,87 @@ export const Feature = styled.div`
         font-size: 20px;
         line-height: 30px;
         color: #352d61;
-        font-family: 'AllRoundGothic-Demi';
+        font-family: 'Poppins', sans-serif;
 
         @media screen and (max-width: 465px) {
             font-size: 20px;
         }
+    }
+`
+
+export const SectionImage = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 1440px;
+
+    .text-content {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        gap: 2rem;
+
+        h1 {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 38px;
+            /* or 140% */
+
+            letter-spacing: 0.327px;
+
+            color: #1b1464;
+
+            @media screen and (min-width: 768px) {
+                font-size: 25px;
+                line-height: 38px;
+            }
+            @media screen and (min-width: 1024px) {
+                font-size: 36px;
+            }
+        }
+
+        p {
+            font-family: 'Gilroy';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 154.15%;
+            /* or 25px */
+
+            color: #1b1464;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 50%;
+        }
+        @media screen and (min-width: 1200px) {
+        }
+        @media screen and (min-width: 1440px) {
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        flex-flow: column;
+        gap: 3rem;
+    }
+
+    @media screen and (min-width: 768px) {
+        gap: 3rem;
+
+        flex-flow: column;
+    }
+    @media screen and (min-width: 1024px) {
+        flex-flow: row;
+        gap: 3rem;
+    }
+    @media screen and (min-width: 1200px) {
+        flex-flow: row;
+    }
+    @media screen and (min-width: 1440px) {
+        flex-flow: row;
     }
 `

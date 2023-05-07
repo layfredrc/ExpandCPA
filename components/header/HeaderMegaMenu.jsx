@@ -16,6 +16,7 @@ import {
     Collapse,
     ScrollArea,
     Container,
+    Stack,
 } from '@mantine/core'
 
 import { useDisclosure } from '@mantine/hooks'
@@ -29,10 +30,11 @@ import {
     IconPigMoney,
     IconEye,
     IconCoinEuro,
+    IconX,
 } from '@tabler/icons'
 
 import { useTranslation } from 'next-i18next'
-import Logo from '../../images/logo_Expand-CPA.svg'
+import Logo from '../../images/Logo_Expand_CPA_horizontal.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -40,30 +42,24 @@ import LanguageSwitcher from './LanguageSwitcher'
 import i18nextConfig from '../../next-i18next.config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import styled from 'styled-components'
+
+import { RoundedButton } from '../homepage/HeroHomePage'
 
 const useStyles = createStyles((theme) => ({
     root: {
         position: 'fixed',
         zIndex: 20,
-
-        '@media screen and (max-width: 768px)': {
-            padding: '0.75rem',
-        },
-
-        '@media screen and (min-width: 1024px)': {
-            padding: '0rem 1%',
-        },
+        boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.09)',
     },
 
     inner: {
         display: 'flex',
-        justifyContent: 'space-between',
+        maxWidth: '1200px',
         alignItems: 'center',
         fontFamily: "'Gilroy', sans-serif",
+        fontSize: '12px',
         padding: '0',
-        '@media screen and (min-width: 768px)': {
-            padding: '0.5rem',
-        },
     },
 
     linkswrapper: {
@@ -82,12 +78,22 @@ const useStyles = createStyles((theme) => ({
             theme.colorScheme === 'dark'
                 ? theme.colors.dark[0]
                 : theme.colors.gray[9],
-        fontSize: theme.fontSizes.md,
-        fontWeight: 600,
+        fontSize: '16px',
+        fontWeight: 500,
+    },
 
-        '@media screen and (min-width: 1500px)': {
-            fontSize: theme.fontSizes.xl,
-        },
+    linkMobile: {
+        display: 'block',
+        lineHeight: '19px',
+        padding: '8px 12px',
+        letterSpacing: '0.327px',
+        borderRadius: theme.radius.sm,
+        textDecoration: 'none',
+        cursor: 'pointer',
+        fontFamily: "'Gilroy', sans-serif",
+        color: '#1B1464',
+        fontSize: '16px',
+        fontWeight: 500,
     },
 
     hiring: {
@@ -106,7 +112,7 @@ const useStyles = createStyles((theme) => ({
                 theme.colorScheme === 'dark'
                     ? theme.colors.dark[0]
                     : theme.colors.gray[9],
-            fontWeight: 600,
+            fontWeight: 500,
         },
     },
 
@@ -126,7 +132,7 @@ const useStyles = createStyles((theme) => ({
         fontFamily: "'Gilroy', sans-serif",
         color: theme.colors.dark,
         fontSize: theme.fontSizes.md,
-        fontWeight: 600,
+        fontWeight: 500,
     },
 
     dropdownFooter: {
@@ -166,6 +172,15 @@ const useStyles = createStyles((theme) => ({
             theme.colorScheme === 'dark'
                 ? theme.colors.dark[6]
                 : theme.colors.gray[1],
+    },
+
+    contactUsBtn: {
+        background:
+            'linear-gradient(78.06deg, #1B1464 -48.75%, #0657CF 96.72%)',
+        borderRadius: '60px',
+        color: '#fff',
+        padding: '10px 20px',
+        fontSize: '16px',
     },
 }))
 
@@ -279,7 +294,7 @@ export default function HeaderMegaMenu() {
                         weight={500}
                         style={{
                             fontFamily: "'Gilroy',sans-serif",
-                            fontWeight: 600,
+                            fontWeight: 500,
                         }}
                     >
                         {item.title}
@@ -324,7 +339,7 @@ export default function HeaderMegaMenu() {
                         weight={500}
                         style={{
                             fontFamily: "'Gilroy',sans-serif",
-                            fontWeight: 600,
+                            fontWeight: 500,
                         }}
                     >
                         {item.title}
@@ -335,26 +350,17 @@ export default function HeaderMegaMenu() {
     ))
 
     return (
-        <Box mb={120}>
+        <Box mb={100}>
             <Header
-                height={120}
+                height={100}
                 className={classes.root}
                 fixed
             >
                 <Container
-                    className={classes.inner}
                     fluid
+                    className={classes.hiddenDesktop}
                 >
-                    <Group
-                        position='left'
-                        sx={{ height: '100%' }}
-                    >
-                        <Burger
-                            opened={drawerOpened}
-                            onClick={toggleDrawer}
-                            className={classes.hiddenDesktop}
-                            size='lg'
-                        />
+                    <Group position='apart'>
                         <Link
                             href='/'
                             locale={router.locale}
@@ -370,6 +376,43 @@ export default function HeaderMegaMenu() {
                                 alt='Expand CPA LOGO'
                             />
                         </Link>
+                        <Group>
+                            <LanguageSwitcher />
+                            <Burger
+                                opened={drawerOpened}
+                                onClick={toggleDrawer}
+                                className={classes.hiddenDesktop}
+                                size='md'
+                            />
+                        </Group>
+                    </Group>
+                </Container>
+
+                <Container
+                    className={classes.inner}
+                    fluid
+                >
+                    <Group
+                        sx={{ height: '100%' }}
+                        spacing={130}
+                    >
+                        <Link
+                            href='/'
+                            locale={router.locale}
+                            onClick={(e) =>
+                                handlePreventRefreshOnSameLink(e, '/')
+                            }
+                            className={classes.hiddenMobile}
+                        >
+                            <Image
+                                src={Logo}
+                                width='150'
+                                height='100'
+                                priority
+                                alt='Expand CPA LOGO'
+                            />
+                        </Link>
+
                         <Container fluid>
                             <Group
                                 sx={{ height: '100%' }}
@@ -423,10 +466,6 @@ export default function HeaderMegaMenu() {
                                                 >
                                                     {t('business')}
                                                 </Box>
-                                                <IconChevronDown
-                                                    size={16}
-                                                    color={theme.fn.primaryColor()}
-                                                />
                                             </Center>
                                         </Link>
                                     </HoverCard.Target>
@@ -434,10 +473,7 @@ export default function HeaderMegaMenu() {
                                     <HoverCard.Dropdown
                                         sx={{ overflow: 'hidden' }}
                                     >
-                                        <Group
-                                            position='apart'
-                                            px='md'
-                                        >
+                                        <Group position='apart'>
                                             <Text
                                                 weight={500}
                                                 style={{
@@ -558,10 +594,6 @@ export default function HeaderMegaMenu() {
                                                 >
                                                     {t('tax')}
                                                 </Box>
-                                                <IconChevronDown
-                                                    size={16}
-                                                    color={theme.fn.primaryColor()}
-                                                />
                                             </Center>
                                         </Text>
                                     </HoverCard.Target>
@@ -670,7 +702,7 @@ export default function HeaderMegaMenu() {
                                 </Link>
                                 <Link
                                     href='/#contact'
-                                    className={cx(classes.link, {
+                                    className={cx(classes.contactUsBtn, {
                                         [classes.mainLinkActive]:
                                             router.asPath === '/#contact',
                                     })}
@@ -682,25 +714,8 @@ export default function HeaderMegaMenu() {
                                         )
                                     }
                                 >
-                                    {t('contact')}
+                                    {t('contactUs')}
                                 </Link>
-                                <Link
-                                    href='/hiring'
-                                    className={cx(classes.hiring, {
-                                        [classes.mainLinkActive]:
-                                            router.pathname.includes('/hiring'),
-                                    })}
-                                    locale={router.locale}
-                                    onClick={(e) =>
-                                        handlePreventRefreshOnSameLink(
-                                            e,
-                                            '/hiring'
-                                        )
-                                    }
-                                >
-                                    {t('recrutement')}
-                                </Link>
-
                                 <Group className={classes.hiddenMobile}>
                                     <LanguageSwitcher />
                                 </Group>
@@ -714,12 +729,38 @@ export default function HeaderMegaMenu() {
                 opened={drawerOpened}
                 onClose={closeDrawer}
                 size='100%'
-                padding='md'
+                styles={(theme) => ({
+                    closeButton: {
+                        color: '#0657CF',
+                    },
+
+                    header: {
+                        boxShadow: ' 0px 4px 13px rgba(0, 0, 0, 0.07)',
+                        padding: '0 20px',
+                    },
+                })}
                 title={
                     <Group
                         className={classes.hiddenDesktop}
                         onClick={closeDrawer}
+                        position='apart'
+                        spacing={60}
                     >
+                        <Link
+                            href='/'
+                            locale={router.locale}
+                            onClick={(e) =>
+                                handlePreventRefreshOnSameLink(e, '/')
+                            }
+                        >
+                            <Image
+                                src={Logo}
+                                width='150'
+                                height='100'
+                                priority
+                                alt='Expand CPA LOGO'
+                            />
+                        </Link>
                         <LanguageSwitcher />
                     </Group>
                 }
@@ -730,104 +771,109 @@ export default function HeaderMegaMenu() {
                     sx={{ height: 'calc(100vh - 60px)' }}
                     mx='-md'
                 >
-                    <Divider
-                        my='sm'
-                        color={
-                            theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'
-                        }
-                    />
+                    <Stack
+                        spacing={37}
+                        px={25}
+                    >
+                        <Link
+                            href='/about'
+                            className={classes.linkMobile}
+                            onClick={(e) => {
+                                handlePreventRefreshOnSameLink(e, '/about/')
+                                closeDrawer()
+                            }}
+                            locale={router.locale}
+                        >
+                            {t('cabinet')}
+                        </Link>
+                        <UnstyledButton
+                            className={classes.linkMobile}
+                            onClick={toggleLinks}
+                        >
+                            <Center inline>
+                                <Box
+                                    component='span'
+                                    mr={5}
+                                >
+                                    {t('business')}
+                                </Box>
+                                <IconChevronDown
+                                    size={16}
+                                    color='#1B1464'
+                                />
+                            </Center>
+                        </UnstyledButton>
+                        <Collapse in={linksOpened}>{businessLinks}</Collapse>
 
-                    <Link
-                        href='/about'
-                        className={classes.link}
-                        onClick={(e) => {
-                            handlePreventRefreshOnSameLink(e, '/about/')
-                            closeDrawer()
-                        }}
-                        locale={router.locale}
-                    >
-                        {t('cabinet')}
-                    </Link>
-                    <UnstyledButton
-                        className={classes.link}
-                        onClick={toggleLinks}
-                    >
-                        <Center inline>
-                            <Box
-                                component='span'
-                                mr={5}
-                            >
-                                {t('business')}
-                            </Box>
-                            <IconChevronDown
-                                size={16}
-                                color={theme.fn.primaryColor()}
-                            />
-                        </Center>
-                    </UnstyledButton>
-                    <Collapse in={linksOpened}>{businessLinks}</Collapse>
+                        <UnstyledButton
+                            className={classes.linkMobile}
+                            onClick={toggleLinks}
+                        >
+                            <Center inline>
+                                <Box
+                                    component='span'
+                                    mr={5}
+                                >
+                                    {t('tax')}
+                                </Box>
+                                <IconChevronDown
+                                    size={16}
+                                    color='#1B1464'
+                                />
+                            </Center>
+                        </UnstyledButton>
+                        <Collapse in={linksOpened}>{privateTaxLinks}</Collapse>
+                        <Link
+                            href='/blog'
+                            className={classes.linkMobile}
+                            onClick={(e) => {
+                                handlePreventRefreshOnSameLink(e, '/blog/')
+                                closeDrawer()
+                            }}
+                            locale={router.locale}
+                        >
+                            {t('blog')}
+                        </Link>
+                        <Link
+                            href='/#contact'
+                            className={classes.linkMobile}
+                            onClick={(e) => {
+                                handlePreventRefreshOnSameLink(e, '/#contact')
+                                closeDrawer()
+                            }}
+                            locale={router.locale}
+                        >
+                            {t('contact')}
+                        </Link>
 
-                    <UnstyledButton
-                        className={classes.link}
-                        onClick={toggleLinks}
-                    >
-                        <Center inline>
-                            <Box
-                                component='span'
-                                mr={5}
-                            >
-                                {t('tax')}
-                            </Box>
-                            <IconChevronDown
-                                size={16}
-                                color={theme.fn.primaryColor()}
-                            />
-                        </Center>
-                    </UnstyledButton>
-                    <Collapse in={linksOpened}>{privateTaxLinks}</Collapse>
-                    <Link
-                        href='/blog'
-                        className={classes.link}
-                        onClick={(e) => {
-                            handlePreventRefreshOnSameLink(e, '/blog/')
-                            closeDrawer()
-                        }}
-                        locale={router.locale}
-                    >
-                        {t('blog')}
-                    </Link>
-                    <Link
-                        href='/#contact'
-                        className={classes.link}
-                        onClick={(e) => {
-                            handlePreventRefreshOnSameLink(e, '/#contact')
-                            closeDrawer()
-                        }}
-                        locale={router.locale}
-                    >
-                        {t('contact')}
-                    </Link>
+                        <Link
+                            href='/hiring'
+                            className={classes.linkMobile}
+                            onClick={(e) => {
+                                handlePreventRefreshOnSameLink(e, '/hiring/')
+                                closeDrawer()
+                            }}
+                            locale={router.locale}
+                        >
+                            {t('recrutement')}
+                        </Link>
+                        <div style={{ width: '200px' }}>
+                            <RoundedButton href='/#contact'>
+                                {t('contactUs')}
+                            </RoundedButton>
+                        </div>
+                    </Stack>
 
-                    <Link
-                        href='/hiring'
-                        className={classes.link}
-                        onClick={(e) => {
-                            handlePreventRefreshOnSameLink(e, '/hiring/')
-                            closeDrawer()
-                        }}
-                        locale={router.locale}
-                    >
-                        {t('recrutement')}
-                    </Link>
-
-                    <Divider
-                        my='sm'
-                        color={
-                            theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'
-                        }
-                    />
+                    <BackgroundGradient />
                 </ScrollArea>
             </Drawer>
         </Box>
     )
 }
+
+const BackgroundGradient = styled.div`
+    background: linear-gradient(92.29deg, #4364f7 0.66%, #1b1464 96.93%);
+    border-radius: 84.5491px 0px 0px 0px;
+    height: 50vh;
+    margin-top: 100px;
+`
