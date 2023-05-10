@@ -373,7 +373,7 @@ const ContactForm = () => {
                     <ContactInfoContainer>
                         <ContactInfo>
                             <Image
-                                src={location1}
+                                src={location2}
                                 alt='paris'
                             />
                             <Stack spacing={'xs'}>
@@ -401,7 +401,7 @@ const ContactForm = () => {
                         >
                             <ContactInfo>
                                 <Image
-                                    src={location2}
+                                    src={location1}
                                     alt='tel aviv'
                                 />
                                 <p>Menahem Begin, 132 TEL AVIV</p>
