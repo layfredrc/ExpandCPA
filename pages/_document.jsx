@@ -30,14 +30,14 @@ export default function Document() {
                 />
             </Head>
             <body>
-                <Main />
-                <NextScript />
                 <noscript
                     dangerouslySetInnerHTML={{
                         __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5T2X2DQ"
                         height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
                     }}
                 />
+                <Main />
+                <NextScript />
             </body>
             <footer><script
                     dangerouslySetInnerHTML={{
@@ -49,8 +49,7 @@ export default function Document() {
                             var t = d.getElementsByTagName(s)[0],e = d.createElement(s);
                             e.async = true; e.src = "//static.axept.io/sdk.js";
                             t.parentNode.insertBefore(e, t);
-                        })(document, "script");
-`,
+                        })(document, "script");`,
                     }}
                 /></footer>
         </Html>
