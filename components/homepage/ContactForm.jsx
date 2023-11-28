@@ -21,7 +21,6 @@ import {
     Select,
     Stack,
     Loader,
-    Center,
 } from '@mantine/core'
 
 import { IconCircleCheck } from '@tabler/icons'
@@ -102,6 +101,9 @@ const ContactForm = () => {
                 if (res.status === 200 && resBody.status === 'success') {
                     // Example check on response body
                     console.log('Form submitted successfully')
+                    // Ajout du script de suivi de conversion ici
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({'event': 'send_contact_form'});
                     setOpened(true)
                     form.reset()
                 } else {
