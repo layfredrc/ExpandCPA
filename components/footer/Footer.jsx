@@ -160,7 +160,7 @@ const Footer = () => {
                                 <a href='tel:01-86-96-37-01'>
                                     <div className='links'>
                                         <span>
-                                            01 86 96 37 01 - 06 59 69 13 42
+                                            01 86 96 37 01 - 06 88 29 96 81
                                         </span>
                                     </div>
                                 </a>

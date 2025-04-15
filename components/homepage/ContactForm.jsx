@@ -102,8 +102,8 @@ const ContactForm = () => {
                     // Example check on response body
                     console.log('Form submitted successfully')
                     // Ajout du script de suivi de conversion ici
-                    window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({'event': 'send_contact_form'});
+                    window.dataLayer = window.dataLayer || []
+                    window.dataLayer.push({ event: 'send_contact_form' })
                     setOpened(true)
                     form.reset()
                 } else {
@@ -504,7 +504,7 @@ const ContactForm = () => {
                                     src={telephone}
                                     alt='phone'
                                 />
-                                <p>01 86 96 37 01 - 06 59 69 13 42</p>
+                                <p>01 86 96 37 01 - 06 88 29 96 81</p>
                             </ContactInfo>
                         </a>
                         <a href='mailto:contact@expand-cpa.com'>
